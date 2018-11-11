@@ -80,5 +80,25 @@ int main()
 
     printf("%c, %c, %c \n",*p2,*p3,*p4);
 
-    return 0;
+    printf("\n\n\n");
+    printf("---- Pointer to Pointer ---- \n");
+
+    char c4 = 'A';
+    char *p5;
+    p5 = &c4;
+    printf("Address of c4: %p\n",p5);
+    printf("Address of p5: %p\n",&p5);
+
+
+    char c5 = 'A';
+    char *p6,**p7;
+    p6 = &c5;
+    p7 = &p6;
+    **p7 = 'B';
+
+    printf("Value of c5 : %c \n",c5);
+    printf("Value of c5 : %c \n",*p6);
+    printf("Value of c5 : %c \n",**p7);
+
+     return 0;
 }
