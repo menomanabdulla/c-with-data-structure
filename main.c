@@ -100,5 +100,23 @@ int main()
     printf("Value of c5 : %c \n",*p6);
     printf("Value of c5 : %c \n",**p7);
 
-     return 0;
+    printf("\n\n\n");
+    printf("---- file operation ---- \n");
+
+    FILE *fp;
+    char filename[] = "my_file.txt";
+    fp = fopen(filename,"w+");
+    fprintf(fp,"This is a file crated by my program \n");
+    fprintf(fp,"I am so happy \n");
+    fclose(fp);
+
+    FILE *fe;
+    char filenameTwo[] = "my_file_two.txt";
+    fe = fopen(filenameTwo,"a");
+    //fprintf(fe,"This is file two here for edit \n");
+   //fprintf(fe,"This is line two here for update\n");
+    fprintf(fe,"This is append test here\n");
+    fclose(fe);
+    fprintf(fe,"this is editional test after file close\n");
+    return 0;
 }
