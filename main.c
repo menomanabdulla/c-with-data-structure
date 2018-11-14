@@ -112,11 +112,40 @@ int main()
 
     FILE *fe;
     char filenameTwo[] = "my_file_two.txt";
-    fe = fopen(filenameTwo,"a");
+    fe = fopen(filenameTwo,"w+");
     //fprintf(fe,"This is file two here for edit \n");
    //fprintf(fe,"This is line two here for update\n");
     fprintf(fe,"This is append test here\n");
     fclose(fe);
-    fprintf(fe,"this is editional test after file close\n");
+    fp = fopen(filename,"w+");
+    fprintf(fp,"this is editional test after file close\n");
+    fclose(fp);
+
+    FILE *Ffile;
+    char nameFile[] = "myFile.txt";
+    Ffile = fopen(nameFile,"w");
+    fprintf(Ffile,"File operation test three");
+    fclose(Ffile);
+
+    printf("\n\n\n");
+    printf("---- read value from file and write to others one ---- \n");
+
+    FILE *fp_in,*fp_out;
+    char *input_file = "./file/in.txt";
+    char *output_file = "./file/out.txt";
+    int num1,num2,sum;
+
+    fp_in = fopen(input_file,"r");
+    fp_out = fopen(output_file,"w");
+
+    fscanf(fp_in,"%d",&num1);
+    fscanf(fp_in,"%d",&num2);
+    sum= num1+num2;
+
+    printf("%d %d %d",num1,num2,sum);
+    fprintf(fp_out,"%d\n",sum);
+    fclose(fp_in);
+    fclose(fp_out);
+
     return 0;
 }
