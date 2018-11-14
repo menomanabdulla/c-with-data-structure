@@ -131,19 +131,22 @@ int main()
     printf("---- read value from file and write to others one ---- \n");
 
     FILE *fp_in,*fp_out;
-    char *input_file = "./file/in.txt";
-    char *output_file = "./file/out.txt";
+    char *file_input = "./file/in.txt";
+    char *file_output = "./file/out.txt";
     int num1,num2,sum;
+    char line[80];
 
-    fp_in = fopen(input_file,"r");
-    fp_out = fopen(output_file,"w");
+    fp_in = fopen(file_input,"r");
+    fp_out = fopen(file_output,"w");
 
-    fscanf(fp_in,"%d",&num1);
-    fscanf(fp_in,"%d",&num2);
-    sum= num1+num2;
+    while(fgets(line,80,fp_in) != NULL ){
+        line[strlen(line)-1] = '\0';
+        sscanf(line,"%d %d",&num1,&num2);
+        sum = num1+num2;
+        printf("%d + %d = %d \n",num1,num2,sum);
+        fprintf(fp_out,"%d\n",sum);
+    }
 
-    printf("%d %d %d",num1,num2,sum);
-    fprintf(fp_out,"%d\n",sum);
     fclose(fp_in);
     fclose(fp_out);
 
