@@ -137,7 +137,7 @@ int main()
     char line[80];
 
     fp_in = fopen(file_input,"r");
-    fp_out = fopen(file_output,"w");
+    fp_out = fopen(file_output,"a");
 
     while(fgets(line,80,fp_in) != NULL ){
         line[strlen(line)-1] = '\0';
@@ -150,5 +150,26 @@ int main()
     fclose(fp_in);
     fclose(fp_out);
 
+    FILE *fp_in_img,*fp_out_img;
+    char *input_file_img = "image1.jpg";
+    char *output_file_img = "image2.jpg";
+    int ch;
+
+    fp_in_img = fopen(input_file_img,"rb");
+    if(fp_in_img == NULL){
+        perror("File opening failed");
+        return EXIT_FAILURE;
+    }
+
+    fp_out_img =  fopen(output_file_img,"wb");
+    while(1){
+        ch = fgetc(fp_in_img);
+        if(ch == EOF){
+            break;
+        }
+        fputc(ch,fp_out_img);
+    }
+    fclose(fp_in_img);
+    fclose(fp_out_img);
     return 0;
 }
